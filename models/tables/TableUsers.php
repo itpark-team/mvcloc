@@ -25,4 +25,24 @@ class TableUsers
 
         return $users;
     }
+
+    public function getById($id): User
+    {
+        $db = DbConnector::getConnection();
+
+        $queryResult = $db->query("SELECT * FROM `users` WHERE `id` = {$id}");
+
+        if ($queryResult->num_rows == 0) {
+            throw new Exception("User with id = {$id} not found");
+        } else {
+            $row = $queryResult->fetch_assoc();
+            $user = new User(
+                $row["id"],
+                $row["name"],
+                $row["login"],
+                $row["password"]
+            );
+            return $user;
+        }
+    }
 }

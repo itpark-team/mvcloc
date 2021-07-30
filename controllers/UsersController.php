@@ -17,11 +17,20 @@ class UsersController
     public function getAllAction()
     {
         $users = $this->dbManager->Users->getAll();
-        $this->view->render("main","users/getAll", $users);
+        $this->view->render("main", "users/getAll", $users);
 
     }
 
-    public function filledAction(){
-        $this->view->render("main","users/filled");
+    public function getByIdAction($id)
+    {
+        $user = $this->dbManager->Users->getById($id);
+        $this->view->render("main", "users/getById", $user);
     }
+
+    public function filledAction()
+    {
+        $this->view->render("main", "users/filled");
+    }
+
+
 }

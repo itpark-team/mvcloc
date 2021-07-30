@@ -23,14 +23,23 @@ class Router
     public function route()
     {
         $urlParts = explode("/", $this->url);
+        $id = $urlParts[3];
 
-        $controllerName = $urlParts[1] . "Controller";
-        $actionName = $urlParts[2] . "Action";
+
+        if ($urlParts[1] == "") {
+            $controllerName = "PagesController";
+            $actionName = "indexAction";
+        } else {
+            $controllerName = $urlParts[1] . "Controller";
+            $actionName = $urlParts[2] . "Action";
+        }
+
 
         $controllerPath = "./controllers/" . $controllerName . ".php";
 
         if (file_exists($controllerPath) == false) {
-            $this->view->render("main","shared/error404");
+
+            $this->view->render("main", "shared/error404");
             die();
         }
 
@@ -40,14 +49,26 @@ class Router
         $action = $actionName;
 
         if (method_exists($controller, $action) == false) {
-            $this->view->render("main","shared/error404");
+            $this->view->render("main", "shared/error404");
             die();
         }
 
-        if (count($this->post) == 0) {
-            $controller->$action();
-        } else {
-            $controller->$action($this->post);
+        try {
+
+            if (count($this->post) == 0) {
+                if ($id == null) {
+                    $controller->$action();
+                } else {
+                    $controller->$action($id);
+                }
+            } else {
+                $controller->$action($this->post);
+            }
+
+        } catch (Exception $e) {
+            $this->view->render("main", "shared/error404");
         }
+
+
     }
 }
