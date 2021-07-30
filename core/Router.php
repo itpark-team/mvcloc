@@ -1,9 +1,12 @@
 <?php
 
+require_once './views/View.php';
+
 class Router
 {
     private $url;
     private $post;
+    private $view;
 
     /**
      * Router constructor.
@@ -14,6 +17,7 @@ class Router
     {
         $this->url = $url;
         $this->post = $post;
+        $this->view = new View();
     }
 
     public function route()
@@ -26,7 +30,7 @@ class Router
         $controllerPath = "./controllers/" . $controllerName . ".php";
 
         if (file_exists($controllerPath) == false) {
-            header('Location: ./views/error404.php');
+            $this->view->render("main","shared/error404");
             die();
         }
 
@@ -36,7 +40,7 @@ class Router
         $action = $actionName;
 
         if (method_exists($controller, $action) == false) {
-            header('Location: ./views/shared/error404.php');
+            $this->view->render("main","shared/error404");
             die();
         }
 

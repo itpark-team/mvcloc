@@ -1,12 +1,12 @@
 <?php
 
-require_once './models/tables/Users.php';
+require_once './models/tables/TableUsers.php';
 
 class DbManager{
     public $Users;
 
     public function __construct()
     {
-        $this->Users = new Users();
+        $this->Users = new TableUsers();
     }
 }
