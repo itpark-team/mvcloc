@@ -14,11 +14,32 @@ class UsersController
         $this->view = new View();
     }
 
+    //region CREATE
+
+    public function addNewFormAction()
+    {
+        $this->view->render("main", "users/addNewForm");
+    }
+
+    public function addNewAction($post)
+    {
+        $name = $post["name"];
+        $login = $post["login"];
+        $password = $post["password"];
+
+        $this->dbManager->Users->addNew($name, $login, $password);
+
+        $this->getAllAction();
+    }
+
+    //endregion
+
+    //region RETRIEVE
+
     public function getAllAction()
     {
         $users = $this->dbManager->Users->getAll();
         $this->view->render("main", "users/getAll", $users);
-
     }
 
     public function getByIdAction($id)
@@ -27,10 +48,17 @@ class UsersController
         $this->view->render("main", "users/getById", $user);
     }
 
-    public function filledAction()
-    {
-        $this->view->render("main", "users/filled");
-    }
+    //endregion
 
+    //region DELETE
+    public function deleteByIdAction($post)
+    {
+        $id = $post["id"];
+
+        $user = $this->dbManager->Users->deleteById($id);
+
+        $this->getAllAction();
+    }
+    //endregion
 
 }

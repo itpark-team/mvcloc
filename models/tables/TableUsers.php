@@ -5,6 +5,13 @@ require_once './models/DbConnector.php';
 
 class TableUsers
 {
+    public function addNew($name, $login, $password)
+    {
+        $db = DbConnector::getConnection();
+
+        $db->query("INSERT INTO `users`(`name`, `login`, `password`) VALUES ('{$name}','{$login}','{$password}')");
+    }
+
     public function getAll(): array
     {
         $db = DbConnector::getConnection();
@@ -44,5 +51,12 @@ class TableUsers
             );
             return $user;
         }
+    }
+
+    public function deleteById($id)
+    {
+        $db = DbConnector::getConnection();
+
+        $db->query("DELETE FROM `users` WHERE `id` = {$id}");
     }
 }

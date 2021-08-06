@@ -34,7 +34,6 @@ class Router
             $actionName = $urlParts[2] . "Action";
         }
 
-
         $controllerPath = "./controllers/" . $controllerName . ".php";
 
         if (file_exists($controllerPath) == false) {
