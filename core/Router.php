@@ -44,7 +44,9 @@ class Router
 
 
 
-        $controllerPath = "./controllers/" . $controllerName . ".php";
+        //$controllerPath = "./controllers/" . $controllerName . ".php";
+
+        $controllerPath = current(preg_grep("/".preg_quote($controllerName . ".php")."/i", glob("./controllers/*")));
 
         if (file_exists($controllerPath) == false) {
 
