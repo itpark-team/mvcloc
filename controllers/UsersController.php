@@ -2,16 +2,19 @@
 
 require_once './models/DbManager.php';
 require_once './views/View.php';
+require_once './api/Api.php';
 
 class UsersController
 {
     private $dbManager;
     private $view;
+    private $api;
 
     public function __construct()
     {
         $this->dbManager = new DbManager();
         $this->view = new View();
+        $this->api = new Api();
     }
 
     //region CREATE
@@ -42,11 +45,25 @@ class UsersController
         $this->view->render("main", "users/getAll", $users);
     }
 
+    public function getAllApi()
+    {
+        $users = $this->dbManager->Users->getAll();
+        $this->api->sendJson($users);
+    }
+
     public function getByIdAction($id)
     {
         $user = $this->dbManager->Users->getById($id);
         $this->view->render("main", "users/getById", $user);
     }
+
+    public function getByIdApi($id)
+    {
+        $user = $this->dbManager->Users->getById($id);
+        $this->api->sendJson($user);
+    }
+
+
 
     //endregion
 

@@ -23,16 +23,27 @@ class Router
     public function route()
     {
         $urlParts = explode("/", $this->url);
-        $id = $urlParts[3];
+        $countUrlParts = count($urlParts);
 
+        if($urlParts[1]=="api"){
+            $id = $urlParts[4];
 
-        if ($urlParts[1] == "") {
-            $controllerName = "PagesController";
-            $actionName = "indexAction";
-        } else {
-            $controllerName = $urlParts[1] . "Controller";
-            $actionName = $urlParts[2] . "Action";
+            $controllerName = $urlParts[2] . "Controller";
+            $actionName = $urlParts[3] . "Api";
+        }else{
+            $id = $urlParts[3];
+
+            if ($urlParts[1] == "") {
+                $controllerName = "PagesController";
+                $actionName = "indexAction";
+            } else {
+                $controllerName = $urlParts[1] . "Controller";
+                $actionName = $urlParts[2] . "Action";
+            }
         }
+
+
+
 
         $controllerPath = "./controllers/" . $controllerName . ".php";
 
