@@ -63,8 +63,6 @@ class UsersController
         $this->api->sendJson($user);
     }
 
-
-
     //endregion
 
     //region DELETE
@@ -76,6 +74,32 @@ class UsersController
 
         $this->view->redirect("users/getAll");
     }
+    //endregion
+
+
+    //region Update
+
+    public function updateFormAction($post)
+    {
+        $id = $post["id"];
+
+        $user = $this->dbManager->Users->getById($id);
+
+        $this->view->render("main", "users/updateForm", $user);
+    }
+
+    public function updateAction($post)
+    {
+        $id = $post["id"];
+        $name = $post["name"];
+        $login = $post["login"];
+        $password = $post["password"];
+
+        $this->dbManager->Users->updateById($id, $name, $login, $password);
+
+        $this->view->redirect("users/getbyid/{$id}");
+    }
+
     //endregion
 
 }

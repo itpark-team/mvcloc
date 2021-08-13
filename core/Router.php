@@ -44,7 +44,6 @@ class Router
 
 
 
-
         $controllerPath = "./controllers/" . $controllerName . ".php";
 
         if (file_exists($controllerPath) == false) {
@@ -62,6 +61,7 @@ class Router
             $this->view->render("main", "shared/error404");
             die();
         }
+
 
         try {
 

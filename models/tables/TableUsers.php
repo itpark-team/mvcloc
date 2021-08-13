@@ -59,4 +59,10 @@ class TableUsers
 
         $db->query("DELETE FROM `users` WHERE `id` = {$id}");
     }
+
+    public function updateById($id, $name, $login, $password){
+        $db = DbConnector::getConnection();
+
+        $db->query("UPDATE `users` SET `name`='{$name}',`login`='{$login}',`password`='{$password}' WHERE `id` = {$id}");
+    }
 }

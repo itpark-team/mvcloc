@@ -1,3 +1,12 @@
+<?php $user = $data; ?>
+
+<div class="mb-3">
+    <form method="post" action="/users/updateForm">
+        <input type="text" name="id" value="<?= $user->Id ?>" hidden>
+        <input type="submit" class="btn btn-dark" value="Изменить текущего пользователя">
+    </form>
+</div>
+
 <table class="table">
     <thead>
     <tr>
@@ -8,7 +17,7 @@
     </tr>
     </thead>
     <tbody>
-    <?php $user = $data; ?>
+
     <tr scope="row">
         <td><?= $user->Id ?></td>
         <td><?= $user->Name ?></td>
