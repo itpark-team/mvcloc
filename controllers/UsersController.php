@@ -29,7 +29,7 @@ class UsersController
 
         $this->dbManager->Users->addNew($name, $login, $password);
 
-        $this->getAllAction();
+        $this->view->redirect("users/getAll");
     }
 
     //endregion
@@ -57,7 +57,7 @@ class UsersController
 
         $user = $this->dbManager->Users->deleteById($id);
 
-        $this->getAllAction();
+        $this->view->redirect("users/getAll");
     }
     //endregion
 

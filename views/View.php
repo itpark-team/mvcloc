@@ -6,4 +6,8 @@ class View
     {
         require_once './views/templates/'.$templatePage.'.php';
     }
+
+    public function redirect($page){
+        header("Location: /{$page}");
+    }
 }

@@ -13,6 +13,5 @@ class PagesController
 
     public function indexAction(){
         $this->view->render("main","pages/index");
-
     }
 }

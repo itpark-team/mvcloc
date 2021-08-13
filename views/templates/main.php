@@ -11,6 +11,8 @@
     <script src="/public/vendors/bootstrap502/js/jquery-3.6.0.min.js
 "></script>
 
+    <script src="/public/vendors/bootstrap502/js/bootstrap.bundle.js"></script>
+
 </head>
 <body>
 <div class="container py-3">
@@ -46,7 +48,7 @@
 
 </div>
 
-<script src="/public/vendors/bootstrap502/js/bootstrap.bundle.js"></script>
+
 
 </body>
 </html>
