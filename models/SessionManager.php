@@ -16,4 +16,9 @@ class SessionManager
     {
         $_SESSION[$key] = null;
     }
+
+    public static function clear()
+    {
+        $_SESSION = array();
+    }
 }
