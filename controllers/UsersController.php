@@ -4,6 +4,8 @@ require_once './models/DbManager.php';
 require_once './views/View.php';
 require_once './api/Api.php';
 
+require_once './models/SessionManager.php';
+
 class UsersController
 {
     private $dbManager;
@@ -42,6 +44,9 @@ class UsersController
     public function getAllAction()
     {
         $users = $this->dbManager->Users->getAll();
+
+        //SessionManager::deleteValue("user");
+
         $this->view->render("main", "users/getAll", $users);
     }
 
@@ -54,6 +59,9 @@ class UsersController
     public function getByIdAction($id)
     {
         $user = $this->dbManager->Users->getById($id);
+
+        //SessionManager::setValue("user", $user);
+
         $this->view->render("main", "users/getById", $user);
     }
 

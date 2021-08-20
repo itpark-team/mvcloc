@@ -17,6 +17,16 @@
 <body>
 <div class="container py-3">
 
+    <?php
+    /*$userInSession = SessionManager::getValue("user");
+    if ($userInSession != null) {
+        echo "<h1>{$userInSession->Name}</h1>";
+    }else{
+        echo "user not found";
+    }*/
+    ?>
+
+
     <header>
         <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
             <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
@@ -47,7 +57,6 @@
     </footer>
 
 </div>
-
 
 
 </body>

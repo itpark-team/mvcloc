@@ -1,5 +1,7 @@
 <?php
 
+require_once './models/SessionManager.php';
+
 class View
 {
     public function render($templatePage, $contentPage, $data = null)
